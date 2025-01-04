@@ -3,22 +3,23 @@
 import { useUserContext } from '@/components/providers/user-provider';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import React from 'react'
+import React, { useState } from 'react'
 import { RequestLoanDialog } from './requestLoanDialog';
 import { LoanDetailsDialog } from './loanDetailsDialog';
 
 const Loans = () => {
   const { loans, loading, error } = useUserContext();
+  const [openDialog, setOpenDialog] = useState<boolean>(false)
   return (
     <div>
       <div className='mt-4 rounded-xl border-[1px] px-3 pt-4 border-slate-200 w-full'>
         <div className='flex justify-between items-center '>
           <p className='font-medium px-2'>Loan History</p>
-          <Dialog>
+          <Dialog open={openDialog} onOpenChange={setOpenDialog}>
             <DialogTrigger>
               <button className='border-none p-2 px-4 rounded-full text-[14px] bg-[#8470ff] text-white font-medium'>Request Loan</button>
             </DialogTrigger>
-            <RequestLoanDialog />
+            <RequestLoanDialog setOpenDialog={setOpenDialog} />
           </Dialog>
         </div>
         <div className='mt-4'>
