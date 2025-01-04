@@ -1,0 +1,31 @@
+[
+    {
+      "id": "6767kfjbjhgbr4",
+      "description":"Salary Payment",
+      "date": "2024-12-31T10:00:00Z",
+      "amount": 100,
+      "type": "credit"
+    },
+    {
+      "id": "67nk56fjbjhgbr4",
+      "description":"Groceries",
+      "date": "2024-12-25T12:00:00Z",
+      "amount": 50,
+      "type": "debit"
+    },
+    {
+      "id": "667nkfjbjhgbr4",
+      "description":"Bonus",
+      "date": "2024-12-20T15:00:00Z",
+      "amount": 200,
+      "type": "credit"
+    },
+    {
+      "id": "67nkfjli;jbjhgbr4",
+      "description":"Gas Bill",
+      "date": "2024-12-18T09:30:00Z",
+      "amount": 75,
+      "type": "debit"
+    }
+  ]
+  
