@@ -18,8 +18,8 @@ Refer to the folder structure in the repository.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/my-project.git
-   cd my-project
+   git clone https://github.com/PaulMarv/finance-dashboard.git
+   cd finance-dashboard
 2. Install dependencies
    ```bash
      npm install
