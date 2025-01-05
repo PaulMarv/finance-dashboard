@@ -45,6 +45,7 @@ export const MobileNav = () => {
                 </nav>
             </div>
             <div
+                data-testid="overlay"
                 className={`fixed inset-0 bg-black bg-opacity-50 z-30 ${isOpen ? "block" : "hidden"
                     }`}
                 onClick={toggleNavbar}
