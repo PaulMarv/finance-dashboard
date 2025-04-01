@@ -9,6 +9,7 @@ import InvestmentChart from '@/components/investment-chart';
 
 const Dashboard = () => {
   const { user, transactions, investments } = useUserContext();
+  const [seeMore, setSeeMore] = React.useState(false);
 
   return (
     <div className='w-full flex flex-col lg:gap-8 gap-4'>
@@ -70,24 +71,40 @@ const Dashboard = () => {
           <SavingsChart />
         </div>
         <div className='rounded-xl border-[1px] border-slate-200 w-full h-fit lg:max-w-[300px]'>
-          <h2 className='px-3 py-4 text-[14px] font-medium'>Your Invest Platform</h2>
+          <h2 className='px-3 py-4 text-[14px] font-medium'>Your Investment Platform</h2>
           <div>
             <InvestmentChart />
           </div>
           <div className='mt-2'>
-            {investments.slice(0, 4).map((item, index) => (
-              <div key={index} className={`flex items-center justify-between px-3 py-2 ${index !== investments.length - 1 ? 'border-b border-slate-200' : ''}`}>
-                <p className='text-[14px] flex flex-col'>
-                  <span>
-                    {item.platform}
-                  </span>
-                  <span className="text-[10px] font-normal">
-                    {"*".repeat(5) + item?.account_number?.toString().slice(5)}
-                  </span>
-                </p>
-                <p className='text-[14px]'>$ {item.investment}</p>
-              </div>
-            ))}
+            <div>
+              {investments
+                .slice(0, seeMore ? investments.length : 4) // Show all if seeMore is true
+                .map((item, index) => (
+                  <div
+                    key={index}
+                    className={`flex items-center justify-between px-3 py-2 ${index !== investments.length - 1 ? "border-b border-slate-200" : ""
+                      }`}
+                  >
+                    <p className="text-[14px] flex flex-col">
+                      <span>{item.platform}</span>
+                      <span className="text-[10px] font-normal">
+                        {"*".repeat(5) + item?.account_number?.toString().slice(5)}
+                      </span>
+                    </p>
+                    <p className="text-[14px]">$ {item.investment}</p>
+                  </div>
+                ))}
+
+              {/* Toggle Button */}
+              {investments.length > 4 && (
+                <button
+                  onClick={() => setSeeMore(!seeMore)}
+                  className="text-[#8470ff] text-sm mt-2 p-3"
+                >
+                  {seeMore ? "See Less" : "See More"}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
