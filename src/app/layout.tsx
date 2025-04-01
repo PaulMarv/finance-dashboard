@@ -19,7 +19,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "Overview, transactions and loans",
+  description: "Savings  and Investment Dashboard",
 };
 
 export default function RootLayout({

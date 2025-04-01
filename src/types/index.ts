@@ -33,6 +33,12 @@ export type Investment = {
     investment: number;
 }
 export type InvestmentsProps = Investment[]
+
+export type Savings = {
+    month: string;
+    savings: number;
+}
+export type SavingsProps = Savings[]
 export type User = {
     id: string;
     name: string;

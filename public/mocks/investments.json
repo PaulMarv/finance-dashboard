@@ -2,22 +2,51 @@
   {
     "platform": "Binance",
     "account_number": 34567123071,
-    "investment": 1000
+    "investment": 3000
   },
   {
-    "platform": "Paypal",
+    "platform": "Piggyvest",
     "account_number": 18034567123,
-    "investment": 1200
+    "investment": 200
   },
   {
     "platform": "Coinbase",
     "account_number": 34567123071,
-    "investment": 1800
+    "investment": 800
   },
-
   {
-    "platform": "Dropbox",
+    "platform": "Cowrywise",
     "account_number": 54567124532,
-    "investment": 1400
+    "investment": 400
+  },
+  {
+    "platform": "Robinhood",
+    "account_number": 23890456789,
+    "investment": 500
+  },
+  {
+    "platform": "E*Trade",
+    "account_number": 67890543212,
+    "investment": 300
+  },
+  {
+    "platform": "Fidelity",
+    "account_number": 56789234567,
+    "investment": 280
+  },
+  {
+    "platform": "Bamboo",
+    "account_number": 45678901234,
+    "investment": 2600
+  },
+  {
+    "platform": "Carbon",
+    "account_number": 78901234567,
+    "investment": 2000
+  },
+  {
+    "platform": "Risevest",
+    "account_number": 89012345678,
+    "investment": 320
   }
 ]

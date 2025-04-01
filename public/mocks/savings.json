@@ -1,0 +1,14 @@
+[
+  { "month": "Jan", "savings": 1200 },
+  { "month": "Feb", "savings": 1800 },
+  { "month": "Mar", "savings": 2500 },
+  { "month": "Apr", "savings": 3000 },
+  { "month": "May", "savings": 2700 },
+  { "month": "Jun", "savings": 3200 },
+  { "month": "Jul", "savings": 4100 },
+  { "month": "Aug", "savings": 3800 },
+  { "month": "Sep", "savings": 4500 },
+  { "month": "Oct", "savings": 5000 },
+  { "month": "Nov", "savings": 5300 },
+  { "month": "Dec", "savings": 6000 }
+]

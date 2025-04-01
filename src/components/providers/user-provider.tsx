@@ -1,6 +1,6 @@
 "use client";
 
-import { InvestmentsProps, LoanProps, TransactionProps, User } from "@/types";
+import { InvestmentsProps, LoanProps, SavingsProps, TransactionProps, User } from "@/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
@@ -8,6 +8,7 @@ type UserContextType = {
   transactions: TransactionProps;
   loans: LoanProps;
   investments: InvestmentsProps;
+  savings: SavingsProps;
   loading: boolean;
   error: string | null;
 };
@@ -19,6 +20,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [transactions, setTransactions] = useState<TransactionProps>([]);
   const [loans, setLoans] = useState<LoanProps>([]);
   const [investments, setInvestments] = useState<InvestmentsProps>([]);
+  const [savings, setSavings] = useState<SavingsProps>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -46,6 +48,11 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const investmentsData = await investmentsResponse.json();
       setInvestments(investmentsData);
 
+      //Fetch Savings
+      const savingsResponse = await fetch("/mocks/savings.json");
+      const savingsData = await savingsResponse.json();
+      setSavings(savingsData);
+
 
       setError(null);
     } catch (err) {
@@ -61,7 +68,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, transactions, loans, investments, loading, error }}>
+    <UserContext.Provider value={{ user, transactions, loans, investments, savings, loading, error }}>
       {children}
     </UserContext.Provider>
   );
