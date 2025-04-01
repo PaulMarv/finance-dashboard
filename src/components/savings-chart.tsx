@@ -3,7 +3,9 @@ import { useUserContext } from './providers/user-provider';
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const SavingsChart = () => {
-    const { savings } = useUserContext();
+    const { savings, loading } = useUserContext();
+
+    if (loading) return <p className='p-4'>Loading chart...</p>;
     return (
         <div className="rounded-xl border-[1px] p-4 border-slate-200">
             <h2 className="text-[14px] font-medium px-2">Savings Performance</h2>
