@@ -1,12 +1,13 @@
 "use client";
 
-import { LoanProps, TransactionProps, User } from "@/types";
+import { InvestmentsProps, LoanProps, TransactionProps, User } from "@/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
   user: User | null;
   transactions: TransactionProps;
   loans: LoanProps;
+  investments: InvestmentsProps;
   loading: boolean;
   error: string | null;
 };
@@ -17,6 +18,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [transactions, setTransactions] = useState<TransactionProps>([]);
   const [loans, setLoans] = useState<LoanProps>([]);
+  const [investments, setInvestments] = useState<InvestmentsProps>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,12 +41,18 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const loansData = await loansResponse.json();
       setLoans(loansData);
 
-      setError(null); // Reset error state on successful fetch
+      //Fetch Investments
+      const investmentsResponse = await fetch("/mocks/investments.json");
+      const investmentsData = await investmentsResponse.json();
+      setInvestments(investmentsData);
+
+
+      setError(null);
     } catch (err) {
       console.error("Error fetching data:", err);
       setError("Failed to fetch user data. Please try again.");
     } finally {
-      setLoading(false); // Ensure loading is false after fetch attempt
+      setLoading(false);
     }
   };
 
@@ -53,7 +61,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, transactions, loans, loading, error }}>
+    <UserContext.Provider value={{ user, transactions, loans, investments, loading, error }}>
       {children}
     </UserContext.Provider>
   );

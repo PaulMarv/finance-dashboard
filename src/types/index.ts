@@ -20,10 +20,23 @@ export type Loan = {
 
 export type LoanProps = Loan[]
 
+export type Balance = {
+    amount: number;
+    currency: string;
+    monthlyTrend: 'upward' | 'downward';
+    percentageChange: number;
+}
+
+export type Investment = {
+    platform: string;
+    account_number: number;
+    investment: number;
+}
+export type InvestmentsProps = Investment[]
 export type User = {
     id: string;
     name: string;
-    accountBalance: number;
-    monthlyTrend: string,
-    percentageChange: number,
+    totalBalance: Balance;
+    totalInvestment: Balance;
+    totalReturns: Balance;
 };

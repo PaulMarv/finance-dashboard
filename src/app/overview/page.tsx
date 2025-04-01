@@ -1,12 +1,12 @@
 'use client';
 import { useUserContext } from '@/components/providers/user-provider';
+import DashboardCard from '@/components/ui/dashboard-card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { ArrowUp } from '@phosphor-icons/react';
 import Image from 'next/image';
 import React from 'react'
 
 const Dashboard = () => {
-  const { user, transactions } = useUserContext();
+  const { user, transactions, investments } = useUserContext();
 
   return (
     <div className='w-full flex flex-col lg:gap-8 gap-4'>
@@ -24,66 +24,66 @@ const Dashboard = () => {
           />
         </div>
       </div>
-      <div className='w-full mt-4'>
-        <div className='rounded-xl border-[1px] border-slate-200 min-h-[100px] p-3 w-full lg:max-w-[400px]'>
-          <p className='text-[14px] font-bold'>Total balance</p>
-          <div>
-            <p className='mt-4 text-2xl font-bold'>$ {user?.accountBalance} </p>
-            <div className='flex gap-2 items-center'>
-              <div className={`flex text-[14px] items-center mt-2 rounded-full px-1 ${user?.monthlyTrend === 'upward' ? 'text-green-500 bg-green-50' : 'text-red-500 bg-red-50'}`}>
-                {
-                  user?.monthlyTrend === 'upward' ?
-                    <span className='flex items-center '>
-                      <ArrowUp size={14} /> <span className='text-green-500'>{user?.percentageChange}%</span>
-                    </span> :
-                    <span className='flex items-center '>
-                      <ArrowUp size={14} /> <span className='text-red-500'>{user?.percentageChange}%</span>
-                    </span>
-                }
-              </div>
-              <span className='text-slate-300'>
-                vs last month
-              </span>
-            </div>
+      <div className='w-full mt-4 flex flex-col lg:flex-row gap-10 flex-wrap'>
+        <DashboardCard title={'Total Balance'} amount={user?.totalBalance?.amount ?? 0} trend={user?.totalBalance?.monthlyTrend ?? 'upward'} percentageChange={user?.totalBalance?.percentageChange ?? 0} />
+        <DashboardCard title={'Total Investments'} amount={user?.totalInvestment?.amount ?? 0} trend={user?.totalInvestment?.monthlyTrend ?? 'upward'} percentageChange={user?.totalInvestment?.percentageChange ?? 0} />
+        <DashboardCard title={'Total Returns'} amount={user?.totalReturns?.amount ?? 0} trend={user?.totalReturns?.monthlyTrend ?? 'upward'} percentageChange={user?.totalReturns?.percentageChange ?? 0} />
+      </div>
+      <div className='mt-4 w-full flex flex-col lg:flex-row gap-10 lg:justify-between'>
+        <div className='rounded-xl border-[1px] px-3 pt-4 border-slate-200 w-full'>
+          <p className='text-[14px] font-medium px-2'>Recent Transactions</p>
+          <div className='mt-4'>
+            <Table>
+              <TableHeader >
+                <TableRow className='bg-[#f6f4ff] text-[#8470ff] rounded-full border-none'>
+                  <TableHead>S/N</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead>Amount</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Type</TableHead>
+                </TableRow>
+              </TableHeader>
+
+              <TableBody>
+                {transactions.map((item, index) => (
+                  <TableRow key={item.id}>
+                    <TableCell className="">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell>{item.description}</TableCell>
+                    <TableCell>$ {item.amount}</TableCell>
+                    <TableCell>{new Date(item.date).toLocaleDateString()}</TableCell>
+                    <TableCell className=''>
+                      <span className={`rounded-full py-1 px-2 ${item.type === 'credit' ? 'text-green-500 bg-green-50' : 'text-red-500 bg-red-50'}`}>
+                        {item.type}
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
         </div>
-      </div>
-      <div className='mt-4 rounded-xl border-[1px] px-3 pt-4 border-slate-200 w-full'>
-        <p className='text-[14px] font-medium px-2'>Recent Transactions</p>
-        <div className='mt-4'>
-          <Table>
-            <TableHeader >
-              <TableRow className='bg-[#f6f4ff] text-[#8470ff] rounded-full border-none'>
-                <TableHead>S/N</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>Date</TableHead>
-                <TableHead>Type</TableHead>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody>
-              {transactions.map((item, index) => (
-                <TableRow key={item.id}>
-                  <TableCell className="">
-                    {index + 1}
-                  </TableCell>
-                  <TableCell>{item.description}</TableCell>
-                  <TableCell>$ {item.amount}</TableCell>
-                  <TableCell>{new Date(item.date).toLocaleDateString()}</TableCell>
-                  <TableCell className=''>
-                    <span className={`rounded-full py-1 px-2 ${item.type === 'credit' ? 'text-green-500 bg-green-50' : 'text-red-500 bg-red-50'}`}>
-                      {item.type}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <div className='rounded-xl border-[1px] border-slate-200 w-full h-fit lg:max-w-[300px]'>
+          <h2 className='px-3 py-4 text-[14px] font-medium'>Your Invest Platform</h2>
+          <div className='mt-2'>
+            {investments.map((item, index) => (
+              <div key={index} className={`flex items-center justify-between px-3 py-2 ${index !== investments.length - 1 ? 'border-b border-slate-200' : ''}`}>
+                <p className='text-[14px] flex flex-col'>
+                  <span>
+                    {item.platform}
+                  </span>
+                  <span className="text-[10px] font-normal">
+                    {"*".repeat(5) + item?.account_number?.toString().slice(5)}
+                  </span>
+                </p>
+                <p className='text-[14px]'>$ {item.investment}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   )
 }
-
 export default Dashboard

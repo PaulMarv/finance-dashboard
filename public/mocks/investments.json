@@ -1,0 +1,23 @@
+[
+  {
+    "platform": "Binance",
+    "account_number": 34567123071,
+    "investment": 1000
+  },
+  {
+    "platform": "Paypal",
+    "account_number": 18034567123,
+    "investment": 1200
+  },
+  {
+    "platform": "Coinbase",
+    "account_number": 34567123071,
+    "investment": 1800
+  },
+
+  {
+    "platform": "Dropbox",
+    "account_number": 54567124532,
+    "investment": 1400
+  }
+]

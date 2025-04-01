@@ -1,8 +1,22 @@
 {
-    "id": "67nkyifjbjhgbr4",
-    "name": "John Doe",
-    "accountBalance": 1250.75,
+  "id": "67nkyifjbjhgbr4",
+  "name": "John Doe",
+  "totalBalance": {
+    "amount": 1250.75,
     "monthlyTrend": "upward",
-    "percentageChange": 8
+    "percentageChange": 16.8,
+    "currency": "USD"
+  },
+  "totalInvestment": {
+    "amount": 608,
+    "monthlyTrend": "upward",
+    "percentageChange": 15.2,
+    "currency": "USD"
+  },
+  "totalReturns": {
+    "amount": 642.75,
+    "monthlyTrend": "downward",
+    "percentageChange": 12.8,
+    "currency": "USD"
   }
-  
+}
